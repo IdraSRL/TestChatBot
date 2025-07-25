@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chatbot Artigea</title>
+    <link rel="stylesheet" href="src/style.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>🤖 Chatbot Artigea</h1>
+            <p>Assistente per informazioni aziendali</p>
+        </header>
+
+        <div class="api-key-section">
+            <div class="input-group">
+                <input 
+                    type="password" 
+                    id="apiKey" 
+                    placeholder="Inserisci la tua API Key OpenAI"
+                    class="api-input"
+                >
+                <button id="saveApiKey" class="save-btn">Salva</button>
+            </div>
+            <div id="apiStatus" class="api-status"></div>
+        </div>
+
+        <div class="chat-container">
+            <div id="chatMessages" class="chat-messages">
+                <div class="message bot-message">
+                    <div class="message-content">
+                        <strong>🤖 Assistente:</strong> Ciao! Sono il tuo assistente per le informazioni aziendali. 
+                        Puoi chiedermi informazioni su allarmi, appartamenti, dipendenti, uffici e molto altro.
+                        <br><br>
+                        <em>Esempi di domande:</em>
+                        <ul>
+                            <li>"Allarme artigea"</li>
+                            <li>"Indirizzo di Mura"</li>
+                            <li>"Dipendente Alessandro"</li>
+                            <li>"Minuti appartamento Torre"</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="chat-input-container">
+                <div class="input-group">
+                    <input 
+                        type="text" 
+                        id="userInput" 
+                        placeholder="Scrivi la tua domanda..."
+                        class="chat-input"
+                        disabled
+                    >
+                    <button id="sendButton" class="send-btn" disabled>
+                        <span>Invia</span>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <line x1="22" y1="2" x2="11" y2="13"></line>
+                            <polygon points="22,2 15,22 11,13 2,9"></polygon>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div id="loadingIndicator" class="loading-indicator">
+            <div class="spinner"></div>
+            <span>Elaborando la richiesta...</span>
+        </div>
+    </div>
+
+    <script type="module" src="src/main.js"></script>
+</body>
+</html>
