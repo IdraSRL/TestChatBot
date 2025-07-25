@@ -1,297 +1,280 @@
 export class DataProcessor {
     constructor(data) {
         this.data = data;
-        this.searchableFields = this.buildSearchableFields();
         this.apartmentIndex = this.buildApartmentIndex();
+        this.employeeIndex = this.buildEmployeeIndex();
+        this.alarmIndex = this.buildAlarmIndex();
+        this.officeIndex = this.buildOfficeIndex();
     }
 
     buildApartmentIndex() {
         const index = new Map();
         
-        // Index all apartments from different sections
-        const apartmentSections = ['irene', 'cerrano', 'lorenza', 'molino'];
-        
-        apartmentSections.forEach(section => {
-            const sectionData = this.data[section];
-            if (sectionData && sectionData[section]) {
-                sectionData[section].forEach(apartment => {
-                    if (apartment.nome) {
-                        const normalizedName = apartment.nome.toLowerCase()
+        if (this.data.apartments) {
+            this.data.apartments.forEach(apartment => {
+                // Index by name (normalized)
+                const normalizedName = apartment.name.toLowerCase()
+                    .replace(/[_\s-]/g, '')
+                    .replace(/&/g, '');
+                
+                index.set(normalizedName, apartment);
+                
+                // Index by search terms
+                if (apartment.searchTerms) {
+                    apartment.searchTerms.forEach(term => {
+                        const normalizedTerm = term.toLowerCase()
                             .replace(/[_\s-]/g, '')
-                            .replace(/le_mura/g, 'lemura')
-                            .replace(/casa_di_rosa/g, 'casadirosa')
-                            .replace(/casa_lia/g, 'casalia');
-                        
-                        index.set(normalizedName, {
-                            ...apartment,
-                            section: section,
-                            searchTerms: this.generateSearchTerms(apartment)
-                        });
-                        
-                        // Also index by original name
-                        index.set(apartment.nome.toLowerCase(), {
-                            ...apartment,
-                            section: section,
-                            searchTerms: this.generateSearchTerms(apartment)
-                        });
-                    }
-                });
-            }
-        });
-
-        // Also index apartments from the general apartments list
-        if (this.data.appartamenti && this.data.appartamenti.appartamenti) {
-            this.data.appartamenti.appartamenti.forEach(apartment => {
-                if (apartment.name) {
-                    const normalizedName = apartment.name.toLowerCase()
-                        .replace(/[_\s-]/g, '')
-                        .replace(/le_mura/g, 'lemura');
-                    
-                    index.set(normalizedName, {
-                        ...apartment,
-                        nome: apartment.name,
-                        section: 'appartamenti',
-                        searchTerms: this.generateSearchTerms(apartment)
+                            .replace(/&/g, '');
+                        index.set(normalizedTerm, apartment);
                     });
                 }
+                
+                // Index by original name
+                index.set(apartment.name.toLowerCase(), apartment);
             });
         }
-
+        
         return index;
     }
 
-    generateSearchTerms(apartment) {
-        const terms = [];
+    buildEmployeeIndex() {
+        const index = new Map();
         
-        // Add name variations
-        if (apartment.nome) {
-            terms.push(apartment.nome.toLowerCase());
-            terms.push(apartment.nome.toLowerCase().replace(/[_\s-]/g, ''));
-        }
-        if (apartment.name) {
-            terms.push(apartment.name.toLowerCase());
-            terms.push(apartment.name.toLowerCase().replace(/[_\s-]/g, ''));
-        }
-        
-        // Add address terms
-        if (apartment.indirizzo) {
-            const addressWords = apartment.indirizzo.toLowerCase().split(/[\s,]+/);
-            terms.push(...addressWords.filter(word => word.length > 2));
-        }
-        
-        // Add note terms for keybox searches
-        if (apartment.note && Array.isArray(apartment.note)) {
-            apartment.note.forEach(note => {
-                if (typeof note === 'string') {
-                    const noteWords = note.toLowerCase().split(/[\s:,]+/);
-                    terms.push(...noteWords.filter(word => word.length > 1));
+        if (this.data.employees) {
+            this.data.employees.forEach(employee => {
+                // Index by search terms
+                if (employee.searchTerms) {
+                    employee.searchTerms.forEach(term => {
+                        index.set(term.toLowerCase(), employee);
+                    });
                 }
+                
+                // Index by name
+                index.set(employee.name.toLowerCase(), employee);
             });
         }
         
-        return [...new Set(terms)];
+        return index;
     }
 
-    buildSearchableFields() {
-        const fields = [];
+    buildAlarmIndex() {
+        const index = new Map();
         
-        // Process all data sections
-        Object.keys(this.data).forEach(section => {
-            const sectionData = this.data[section];
-            
-            if (Array.isArray(sectionData)) {
-                sectionData.forEach((item, index) => {
-                    this.extractSearchableText(item, section, index, fields);
-                });
-            } else if (typeof sectionData === 'object') {
-                Object.keys(sectionData).forEach(key => {
-                    if (Array.isArray(sectionData[key])) {
-                        sectionData[key].forEach((item, index) => {
-                            this.extractSearchableText(item, `${section}.${key}`, index, fields);
-                        });
-                    } else {
-                        this.extractSearchableText(sectionData[key], `${section}.${key}`, 0, fields);
-                    }
-                });
-            }
-        });
-        
-        return fields;
-    }
-
-    extractSearchableText(item, section, index, fields) {
-        if (typeof item === 'object' && item !== null) {
-            Object.keys(item).forEach(key => {
-                const value = item[key];
-                if (typeof value === 'string' || typeof value === 'number') {
-                    fields.push({
-                        section,
-                        index,
-                        field: key,
-                        value: value.toString().toLowerCase(),
-                        originalItem: item
-                    });
-                } else if (Array.isArray(value)) {
-                    // Handle arrays (like notes)
-                    value.forEach((arrayItem, arrayIndex) => {
-                        if (typeof arrayItem === 'string') {
-                            fields.push({
-                                section,
-                                index,
-                                field: `${key}[${arrayIndex}]`,
-                                value: arrayItem.toLowerCase(),
-                                originalItem: item
-                            });
+        if (this.data.alarms) {
+            this.data.alarms.forEach(alarm => {
+                // Index by location
+                if (alarm.location) {
+                    index.set(alarm.location.toLowerCase(), alarm);
+                }
+                
+                // Index by name
+                if (alarm.name) {
+                    index.set(alarm.name.toLowerCase(), alarm);
+                    // Also index by individual words
+                    const words = alarm.name.toLowerCase().split(/\s+/);
+                    words.forEach(word => {
+                        if (word.length > 2) {
+                            index.set(word, alarm);
                         }
                     });
                 }
             });
         }
+        
+        return index;
+    }
+
+    buildOfficeIndex() {
+        const index = new Map();
+        
+        if (this.data.offices) {
+            this.data.offices.forEach(office => {
+                // Index by search terms
+                if (office.searchTerms) {
+                    office.searchTerms.forEach(term => {
+                        index.set(term.toLowerCase(), office);
+                    });
+                }
+                
+                // Index by name
+                index.set(office.name.toLowerCase(), office);
+            });
+        }
+        
+        return index;
     }
 
     findRelevantData(query) {
         const queryLower = query.toLowerCase();
         const keywords = this.extractKeywords(queryLower);
         
-        // Special handling for apartment-specific queries
-        const apartmentQuery = this.findApartmentSpecificData(queryLower, keywords);
-        if (apartmentQuery.matches.length > 0) {
-            return apartmentQuery;
+        // Specific searches
+        const apartmentResult = this.findApartmentData(queryLower, keywords);
+        if (apartmentResult.matches.length > 0) {
+            return apartmentResult;
         }
 
-        // General search
-        const relevantSections = new Set();
-        const matchedItems = [];
-
-        // Find matching items based on keywords
-        keywords.forEach(keyword => {
-            this.searchableFields.forEach(field => {
-                if (field.value.includes(keyword)) {
-                    relevantSections.add(field.section);
-                    matchedItems.push(field.originalItem);
-                }
-            });
-        });
-
-        // If no specific matches, try broader search
-        if (matchedItems.length === 0) {
-            return this.getBroadSearchResults(queryLower);
+        const employeeResult = this.findEmployeeData(queryLower, keywords);
+        if (employeeResult.matches.length > 0) {
+            return employeeResult;
         }
 
-        // Remove duplicates
-        const uniqueItems = matchedItems.filter((item, index, self) => 
-            index === self.findIndex(i => JSON.stringify(i) === JSON.stringify(item))
-        );
+        const alarmResult = this.findAlarmData(queryLower, keywords);
+        if (alarmResult.matches.length > 0) {
+            return alarmResult;
+        }
 
-        return {
-            query: query,
-            matches: uniqueItems.slice(0, 10),
-            sections: Array.from(relevantSections)
-        };
+        const officeResult = this.findOfficeData(queryLower, keywords);
+        if (officeResult.matches.length > 0) {
+            return officeResult;
+        }
+
+        // Fallback to general search
+        return this.getBroadSearchResults(queryLower);
     }
 
-    findApartmentSpecificData(queryLower, keywords) {
+    findApartmentData(queryLower, keywords) {
         const matches = [];
         
-        // Look for apartment names in the query
-        for (const [apartmentKey, apartmentData] of this.apartmentIndex) {
-            // Check if any search terms match
-            const queryWords = queryLower.split(/\s+/);
-            const hasMatch = queryWords.some(word => {
-                return apartmentData.searchTerms.some(term => 
-                    term.includes(word) || word.includes(term)
-                );
-            });
-
-            if (hasMatch) {
-                // Check what specific information is being requested
-                if (queryLower.includes('keybox') || queryLower.includes('codice')) {
-                    // Extract keybox information
-                    const keyboxInfo = this.extractKeyboxInfo(apartmentData);
-                    if (keyboxInfo) {
-                        matches.push({
-                            ...apartmentData,
-                            specificInfo: 'keybox',
-                            keyboxData: keyboxInfo
-                        });
-                    }
-                } else if (queryLower.includes('indirizzo') || queryLower.includes('address')) {
+        // Check if it's a keybox query
+        const isKeyboxQuery = queryLower.includes('keybox') || queryLower.includes('codice');
+        const isAddressQuery = queryLower.includes('indirizzo') || queryLower.includes('address');
+        const isTimeQuery = queryLower.includes('minuti') || queryLower.includes('ore') || queryLower.includes('tempo');
+        
+        // Find apartment by name
+        for (const keyword of keywords) {
+            const apartment = this.apartmentIndex.get(keyword);
+            if (apartment) {
+                if (isKeyboxQuery) {
                     matches.push({
-                        ...apartmentData,
-                        specificInfo: 'indirizzo'
+                        ...apartment,
+                        specificInfo: 'keybox',
+                        requestedData: apartment.keyboxDetails || apartment.keybox
                     });
-                } else if (queryLower.includes('minuti') || queryLower.includes('ore') || queryLower.includes('tempo')) {
+                } else if (isAddressQuery) {
                     matches.push({
-                        ...apartmentData,
-                        specificInfo: 'tempo'
+                        ...apartment,
+                        specificInfo: 'address',
+                        requestedData: apartment.address
+                    });
+                } else if (isTimeQuery) {
+                    matches.push({
+                        ...apartment,
+                        specificInfo: 'time',
+                        requestedData: `${apartment.minutes} minuti (${apartment.hours} ore)`
                     });
                 } else {
-                    // Return full apartment info
-                    matches.push(apartmentData);
+                    matches.push(apartment);
                 }
-                break; // Found the apartment, no need to continue
+                break; // Found the apartment, stop searching
             }
         }
 
         return {
             query: queryLower,
             matches: matches,
-            sections: matches.map(m => m.section),
-            isApartmentSpecific: true
+            sections: ['apartments'],
+            isSpecific: true
         };
     }
 
-    extractKeyboxInfo(apartment) {
-        const keyboxInfo = [];
+    findEmployeeData(queryLower, keywords) {
+        const matches = [];
         
-        if (apartment.note && Array.isArray(apartment.note)) {
-            apartment.note.forEach(note => {
-                if (typeof note === 'string') {
-                    const noteLower = note.toLowerCase();
-                    if (noteLower.includes('keybox') || noteLower.includes('key box')) {
-                        keyboxInfo.push(note);
-                    }
-                }
-            });
+        for (const keyword of keywords) {
+            const employee = this.employeeIndex.get(keyword);
+            if (employee) {
+                matches.push(employee);
+                break;
+            }
         }
+
+        return {
+            query: queryLower,
+            matches: matches,
+            sections: ['employees'],
+            isSpecific: true
+        };
+    }
+
+    findAlarmData(queryLower, keywords) {
+        const matches = [];
         
-        return keyboxInfo.length > 0 ? keyboxInfo : null;
+        // Check for "allarme artigea" specifically
+        if (queryLower.includes('allarme') && queryLower.includes('artigea')) {
+            const artigeaAlarm = this.data.alarms.find(alarm => 
+                alarm.name && alarm.name.toLowerCase().includes('keybox') && alarm.name.toLowerCase().includes('artigea')
+            );
+            if (artigeaAlarm) {
+                matches.push(artigeaAlarm);
+            }
+        } else {
+            // General alarm search
+            for (const keyword of keywords) {
+                const alarm = this.alarmIndex.get(keyword);
+                if (alarm) {
+                    matches.push(alarm);
+                }
+            }
+        }
+
+        return {
+            query: queryLower,
+            matches: matches,
+            sections: ['alarms'],
+            isSpecific: true
+        };
+    }
+
+    findOfficeData(queryLower, keywords) {
+        const matches = [];
+        
+        for (const keyword of keywords) {
+            const office = this.officeIndex.get(keyword);
+            if (office) {
+                matches.push(office);
+            }
+        }
+
+        return {
+            query: queryLower,
+            matches: matches,
+            sections: ['offices'],
+            isSpecific: true
+        };
     }
 
     extractKeywords(query) {
-        // Enhanced term mappings
-        const termMappings = {
-            'allarme': ['alarm', 'code'],
-            'indirizzo': ['indirizzo', 'address', 'via', 'piazza'],
-            'dipendente': ['employee', 'name'],
-            'appartamento': ['appartament', 'nome', 'casa', 'flat'],
-            'minuti': ['minutes', 'ore', 'tempo', 'time'],
-            'ufficio': ['office', 'name'],
-            'keybox': ['keybox', 'key', 'codice', 'cassetta'],
-            'codice': ['code', 'codice', 'password'],
-            'password': ['password'],
-            'mura': ['mura', 'le_mura', 'lemura'],
+        // Clean and split query
+        const words = query.toLowerCase()
+            .replace(/[^\w\s]/g, ' ')
+            .split(/\s+/)
+            .filter(word => word.length > 1);
+
+        // Add normalized versions
+        const keywords = [...words];
+        
+        // Add combined words for multi-word searches
+        if (words.length > 1) {
+            keywords.push(words.join(''));
+            keywords.push(words.join(' '));
+        }
+
+        // Special mappings
+        const mappings = {
+            'mura': ['lemura', 'le mura'],
             'torre': ['torre'],
             'casa': ['casa'],
             'alessandro': ['alessandro', 'resti'],
             'anna': ['anna'],
-            'pisa': ['pisa'],
-            'cascina': ['cascina'],
-            'navacchio': ['navacchio'],
-            'cisanello': ['cisanello'],
-            'ghezzano': ['ghezzano']
+            'allarme': ['alarm'],
+            'keybox': ['keybox', 'codice'],
+            'artigea': ['artigea']
         };
 
-        let keywords = [];
-        
-        // Extract direct keywords
-        const words = query.split(/\s+/).filter(word => word.length > 1);
-        keywords.push(...words);
-
-        // Add mapped terms
-        Object.keys(termMappings).forEach(key => {
+        Object.keys(mappings).forEach(key => {
             if (query.includes(key)) {
-                keywords.push(...termMappings[key]);
+                keywords.push(...mappings[key]);
             }
         });
 
@@ -299,35 +282,26 @@ export class DataProcessor {
     }
 
     getBroadSearchResults(query) {
-        // Enhanced broad search with better categorization
         if (query.includes('allarme') || query.includes('alarm')) {
             return {
                 query: query,
-                matches: [
-                    ...(this.data.alarm_general?.alarm_general || []),
-                    ...(this.data.alarm_acli?.alarm_acli || [])
-                ],
-                sections: ['alarm_general', 'alarm_acli']
+                matches: this.data.alarms || [],
+                sections: ['alarms']
             };
         }
 
-        if (query.includes('appartamento') || query.includes('indirizzo') || query.includes('keybox')) {
+        if (query.includes('appartamento') || query.includes('apartment')) {
             return {
                 query: query,
-                matches: [
-                    ...(this.data.irene?.irene || []),
-                    ...(this.data.cerrano?.cerrano || []),
-                    ...(this.data.lorenza?.lorenza || []),
-                    ...(this.data.molino?.molino || [])
-                ].slice(0, 8),
-                sections: ['irene', 'cerrano', 'lorenza', 'molino']
+                matches: (this.data.apartments || []).slice(0, 10),
+                sections: ['apartments']
             };
         }
 
         if (query.includes('dipendente') || query.includes('employee')) {
             return {
                 query: query,
-                matches: this.data.employees?.employees || [],
+                matches: this.data.employees || [],
                 sections: ['employees']
             };
         }
@@ -335,20 +309,20 @@ export class DataProcessor {
         if (query.includes('ufficio') || query.includes('office')) {
             return {
                 query: query,
-                matches: this.data.uffici?.uffici || [],
-                sections: ['uffici']
+                matches: this.data.offices || [],
+                sections: ['offices']
             };
         }
 
-        // Default: return a sample from each major section
+        // Default: return mixed results
         return {
             query: query,
             matches: [
-                ...(this.data.alarm_general?.alarm_general?.slice(0, 2) || []),
-                ...(this.data.employees?.employees?.slice(0, 2) || []),
-                ...(this.data.irene?.irene?.slice(0, 2) || [])
+                ...(this.data.alarms?.slice(0, 3) || []),
+                ...(this.data.apartments?.slice(0, 3) || []),
+                ...(this.data.employees?.slice(0, 3) || [])
             ],
-            sections: ['general_info']
+            sections: ['general']
         };
     }
 }

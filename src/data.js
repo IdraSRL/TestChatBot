@@ -1,529 +1,485 @@
-// Dati aziendali esportati come modulo JavaScript
+// Dati aziendali ottimizzati per ricerca AI
 export const companyData = {
-  "alarm_acli": {
-    "alarm_acli": [
-      {
-        "code": "Inserire:67546 / Disinserire:675461",
-        "location": "Pisa"
-      },
-      {
-        "location": "Cascina",
-        "code": "Inserire: 2 volte ON / Disinserire: 113355"
-      },
-      {
-        "location": "Navacchio",
-        "code": "No allarme"
-      },
-      {
-        "code": "Inserire: 12302 🔓 / Disinserire: 12302 🔒",
-        "location": "Cisanello"
-      },
-      {
-        "location": "Ghezzano",
-        "code": "No allarme"
-      }
-    ]
-  },
-  "alarm_general": {
-    "alarm_general": [
-      {
-        "name": "Codice KeyBox  Artigea",
-        "code": "0224"
-      },
-      {
-        "name": "Aforisma",
-        "code": "OFF:3623* ON:*1"
-      },
-      {
-        "name": "Dima",
-        "code": "2807*"
-      },
-      {
-        "code": "Off: 98753 🔓- On: 98753 🔒",
-        "name": "Q-Designe (ESA)"
-      },
-      {
-        "code": "OFF: F1 172627 OK - ON:F2 172627 OK",
-        "name": "SPAZIO BENESSERE NOVELLA"
-      },
-      {
-        "code": "OFF: F1 172627 OK - ON:F2 172627 OK",
-        "name": "SPAZIO BENESSERE CASCINA"
-      },
-      {
-        "name": "TESECO",
-        "code": "2580"
-      },
-      {
-        "code": "250109 ON/OFF",
-        "name": "UFFICIO START"
-      },
-      {
-        "name": "DISCOTECA",
-        "code": "02082 no"
-      },
-      {
-        "code": "776211",
-        "name": "AGENZIA VIAGGI"
-      },
-      {
-        "name": "B&B 1",
-        "code": "0225E"
-      },
-      {
-        "code": "0325E",
-        "name": "B&B 2"
-      },
-      {
-        "name": "B&B 3",
-        "code": "0824E"
-      }
-    ]
-  },
-  "appartamenti": {
-    "appartamenti": [
-      {
-        "name": "LE_MURA",
-        "minutes": 60
-      },
-      {
-        "name": "ORTENSIE",
-        "minutes": 150
-      },
-      {
-        "minutes": 60,
-        "name": "INBETWEEN"
-      },
-      {
-        "minutes": 90,
-        "name": "SUNNY"
-      },
-      {
-        "minutes": 90,
-        "name": "CASA_DI_ROSA"
-      },
-      {
-        "name": "TORRE",
-        "minutes": 90
-      },
-      {
-        "minutes": 60,
-        "name": "ORSINI"
-      },
-      {
-        "minutes": 30,
-        "name": "RIPASSO"
-      },
-      {
-        "minutes": 90,
-        "name": "CASA_LIA"
-      },
-      {
-        "minutes": 120,
-        "name": "TUSCANY"
-      },
-      {
-        "name": "GIRASOLE",
-        "minutes": 30
-      },
-      {
-        "name": "GELSOMINO",
-        "minutes": 30
-      },
-      {
-        "name": "MIMOSA",
-        "minutes": 30
-      },
-      {
-        "name": "3in1",
-        "minutes": 100
-      },
-      {
-        "name": "NEW_HOUSE_-VIA_PARDI",
-        "minutes": 90
-      },
-      {
-        "minutes": 60,
-        "name": "NEW_APT-VIA_TADDEI"
-      },
-      {
-        "minutes": 90,
-        "name": "DESIGNER_FLAT-VIA_BARGAGNA"
-      },
-      {
-        "name": "ELEGANT-VIA_VESALIO",
-        "minutes": 120
-      },
-      {
-        "minutes": 60,
-        "name": "APT_OSPEDALE-VIA_LUIGI_PERA"
-      },
-      {
-        "minutes": 60,
-        "name": "SAVANA"
-      },
-      {
-        "minutes": 60,
-        "name": "RINOCERONTE"
-      },
-      {
-        "name": "GIRAFFA",
-        "minutes": 60
-      },
-      {
-        "minutes": 60,
-        "name": "CHARM&RELAX"
-      },
-      {
-        "name": "NUOVO&GRAZIOSO",
-        "minutes": 60
-      },
-      {
-        "name": "CAMPANIA2",
-        "minutes": 60
-      },
-      {
-        "minutes": 60,
-        "name": "RANIERI"
-      },
-      {
-        "minutes": 60,
-        "name": "LAURA"
-      },
-      {
-        "minutes": 60,
-        "name": "KINZIKA"
-      },
-      {
-        "minutes": 60,
-        "name": "PAMPURIO"
-      },
-      {
-        "name": "PINUCCIO",
-        "minutes": 60
-      },
-      {
-        "name": "SWEET HOME",
-        "minutes": 60
-      },
-      {
-        "name": "FLAT MODERNO",
-        "minutes": 60
-      },
-      {
-        "minutes": "90",
-        "name": "PAOLA"
-      },
-      {
-        "minutes": "60",
-        "name": "Cozy House"
-      },
-      {
-        "minutes": "90",
-        "name": "Sabina"
-      },
-      {
-        "name": "Ella",
-        "minutes": "60"
-      },
-      {
-        "minutes": "60",
-        "name": "C.David-Azzurra"
-      },
-      {
-        "name": "C.David-Acqua Marina",
-        "minutes": "60"
-      },
-      {
-        "name": "C.David-Lilla",
-        "minutes": "60"
-      },
-      {
-        "name": "C.David-Ocra",
-        "minutes": "60"
-      },
-      {
-        "name": "C.David-AppartamentoPT",
-        "minutes": "60"
-      },
-      {
-        "name": "🔵C.David-Azzurra-REFRESH",
-        "minutes": "30"
-      },
-      {
-        "minutes": "30",
-        "name": "🔵C.David-Acqua Marina-REFRESH"
-      },
-      {
-        "minutes": "30",
-        "name": "🔵C.David-Lilla-REFRESH"
-      },
-      {
-        "name": "🔵C.David-Ocra-REFRESH",
-        "minutes": "30"
-      },
-      {
-        "minutes": "30",
-        "name": "🔵C.David-AppartamentoPT-REFRESH"
-      }
-    ]
-  },
-  "bnb": {
-    "bnb": [
-      {
-        "minutes": 30,
-        "name": "Check-Out"
-      },
-      {
-        "name": "Check-Out_CameraGrande",
-        "minutes": 60
-      },
-      {
-        "minutes": 10,
-        "name": "Refresh"
-      },
-      {
-        "name": "Refresh Approfondito",
-        "minutes": 15
-      },
-      {
-        "name": "Area Comune",
-        "minutes": 10
-      }
-    ]
-  },
-  "bnbNomi": {
-    "bnbNomi": [
-      {
-        "name": "Dalmazia"
-      },
-      {
-        "name": "Martiri"
-      },
-      {
-        "name": "C_Grande"
-      },
-      {
-        "name": "C_Piccola"
-      }
-    ]
-  },
-  "cerrano": {
-    "cerrano": [
-      {
-        "indirizzo": "Via del Tondo 3, Pisa, Pisa",
-        "ore": 2,
-        "ospiti": 5,
-        "composizione": [
-          "1 Letto Matrimoniale",
-          "1 Letto Singolo",
-          "1 Divano Letto Matrimoniale",
-          "2 Bagni (uno senza doccia)",
-          "1 Cucina"
-        ],
-        "note": [
-          "METTERE BIDET",
-          "KeyBox: 5-5-6-6",
-          "Se trovate soldi o contratti, lasciare tutti nello stanzone dove ci sono i cambi biancheria"
-        ],
-        "nome": "Tuscany House",
-        "mappa": "https://www.google.com/maps/dir//Via+del+Tondo,+3,+56124+Pisa+PI/@43.701052,10.4301216,17z/data=!4m9!4m8!1m0!1m5!1m1!1s0x12d591fb907f2cb9:0xab9ae8f91d8a4c55!2m2!1d10.4326965!2d43.701052!3e0?entry=ttu"
-      },
-      {
-        "note": [
-          "METTERE BIDET, L'APPARTAMENTO È AL SECONDO PIANO",
-          "Keybox: 1-9-7-3"
-        ],
-        "mappa": "https://goo.gl/maps/ZPmfF4LNYk3zRMUR7",
-        "composizione": [
-          "2 Letti Matrimoniali",
-          "1 Bagno",
-          "1 Cucina"
-        ],
-        "indirizzo": "Via Francesco Pardi 16, Pisa, Pisa",
-        "ospiti": 4,
-        "nome": "new house",
-        "ore": 1.5
-      }
-    ]
-  },
-  "employees": {
-    "employees": [
-      {
-        "name": "----Dipendente_Test-----",
-        "urlParam": "DipendenteTest",
-        "password": "Test"
-      },
-      {
-        "name": "Alessandro Resti",
-        "password": "AR5671",
-        "urlParam": "AlessandroResti"
-      },
-      {
-        "password": "AW5896",
-        "urlParam": "AnnaWleklak",
-        "name": "Anna Wleklak"
-      },
-      {
-        "name": "Antonella Guarnieri",
-        "urlParam": "AntonellaGuarnieri",
-        "password": "AG8024"
-      },
-      {
-        "urlParam": "LetiziaVannini",
-        "name": "Letizia Vannini",
-        "password": "LV4587"
-      },
-      {
-        "password": "MS1936",
-        "urlParam": "ManolaSanternecchi",
-        "name": "Manola Santarnecchi"
-      },
-      {
-        "urlParam": "RobertaSalemmo",
-        "password": "RS6239",
-        "name": "Roberta Salemmo"
-      },
-      {
-        "urlParam": "SilviaMarrucci",
-        "name": "Silvia Marrucci",
-        "password": "SM5872"
-      },
-      {
-        "urlParam": "AnnaMacrì",
-        "password": "AM9814",
-        "name": "Anna Macrì"
-      },
-      {
-        "password": "FM1122",
-        "name": "Fabio Malvaldi",
-        "urlParam": "FabioMalvaldi"
-      },
-      {
-        "urlParam": "FrancescoMartini",
-        "password": "FM1111",
-        "name": "Francesco Martini"
-      },
-      {
-        "urlParam": "AngeloBarachini",
-        "name": "Angelo Barachini",
-        "password": "AB2221"
-      }
-    ]
-  },
-  "irene": {
-    "irene": [
-      {
-        "ospiti": 4,
-        "note": [
-          "KeyBox 9953",
-          "KeyBox Posta: 000",
-          "<a href='https://lemura.pythonanywhere.com' class='btn btn-custom-2 btn-lg text-white btn-custom ripple'>Apertura cancello</a>",
-          "Nome: guest",
-          "Password: Maffi36"
-        ],
-        "mappa": "https://www.google.com/maps?q=Via+Cardinale+Maffi+36,+Pisa",
-        "ore": 1,
-        "indirizzo": "Via Cardinale Maffi 36, Pisa",
-        "nome": "Le Mura",
-        "composizione": [
-          "2 Letti Matrimoniali",
-          "1 Bagno",
-          "1 Cucina"
-        ]
-      },
-      {
-        "ore": 1.5,
-        "composizione": [
-          "2 Letti Matrimoniali",
-          "1 Letto Singolo",
-          "2 Bagni",
-          "1 Cucina"
-        ],
-        "indirizzo": "Via Risorgimento 10, Pisa",
-        "note": [
-          "KeyBox cassetta postale: 000"
-        ],
-        "mappa": "https://www.google.com/maps/place/Via+Risorgimento,+10,+56126+Pisa+PI/@43.7180123,10.3916741,17z/data=!3m1!4b1!4m6!3m5!1s0x12d5910aa5c87a69:0x5e9870a1bd95ec48!8m2!3d43.7180123!4d10.394249!16s%2Fg%2F11c5q84cys?entry=ttu",
-        "ospiti": 5,
-        "nome": "Torre"
-      }
-    ]
-  },
-  "lorenza": {
-    "lorenza": [
-      {
-        "ospiti": 2,
-        "indirizzo": "Piazza Vittorio Locchi 5, Pisa",
-        "note": [
-          "se trovate soldi o chiavi, metteteli nei cassetti",
-          "Piano Terra",
-          "Come arrivare<a href='./appartamenti/ranieeri.html' class='btn btn-custom-2 btn-lg text-white btn-custom ripple'>INFO</a>"
-        ],
-        "nome": "Ranieri",
-        "mappa": "https://maps.app.goo.gl/FAHcRrY2do67F2Ud9",
-        "ore": 1,
-        "composizione": [
-          "1 Letto Matrimoniale",
-          "1 Bagni",
-          "1 Cucina"
-        ]
-      }
-    ]
-  },
-  "uffici": {
-    "uffici": [
-      {
-        "name": "ACI",
-        "minutes": 200
-      },
-      {
-        "name": "PROFESSIONECASA",
-        "minutes": 60
-      },
-      {
-        "minutes": 120,
-        "name": "UFFICIO START"
-      },
-      {
-        "name": "MAGAZZINO START",
-        "minutes": 30
-      },
-      {
-        "minutes": 50,
-        "name": "SUORE NAVACCHIO"
-      },
-      {
-        "minutes": 50,
-        "name": "SUORE PISA"
-      },
-      {
-        "minutes": 60,
-        "name": "COLLEGIO PROFESSIONALE INFERMIERI"
-      },
-      {
-        "name": "COLLEGIO PROFESSIONALE INFERMIERI - VETRI",
-        "minutes": 40
-      },
-      {
-        "name": "CESVOT",
-        "minutes": 30
-      },
-      {
-        "name": "MATCH NEW GENERATION",
-        "minutes": 40
-      },
-      {
-        "minutes": 90,
-        "name": "Q DESIGNE"
-      },
-      {
-        "name": "STUDI MEDICI DEL LAVORO",
-        "minutes": 120
-      }
-    ]
-  },
-  "masterPassword": {
-    "masterPassword": "Artigea"
-  }
+  // ALLARMI - Struttura piatta per ricerca diretta
+  alarms: [
+    // ACLI Alarms
+    { type: "acli", location: "Pisa", code: "Inserire:67546 / Disinserire:675461" },
+    { type: "acli", location: "Cascina", code: "Inserire: 2 volte ON / Disinserire: 113355" },
+    { type: "acli", location: "Navacchio", code: "No allarme" },
+    { type: "acli", location: "Cisanello", code: "Inserire: 12302 🔓 / Disinserire: 12302 🔒" },
+    { type: "acli", location: "Ghezzano", code: "No allarme" },
+    
+    // General Alarms
+    { type: "general", name: "Codice KeyBox Artigea", code: "0224" },
+    { type: "general", name: "Aforisma", code: "OFF:3623* ON:*1" },
+    { type: "general", name: "Dima", code: "2807*" },
+    { type: "general", name: "Q-Designe (ESA)", code: "Off: 98753 🔓- On: 98753 🔒" },
+    { type: "general", name: "SPAZIO BENESSERE NOVELLA", code: "OFF: F1 172627 OK - ON:F2 172627 OK" },
+    { type: "general", name: "SPAZIO BENESSERE CASCINA", code: "OFF: F1 172627 OK - ON:F2 172627 OK" },
+    { type: "general", name: "TESECO", code: "2580" },
+    { type: "general", name: "UFFICIO START", code: "250109 ON/OFF" },
+    { type: "general", name: "DISCOTECA", code: "02082 no" },
+    { type: "general", name: "AGENZIA VIAGGI", code: "776211" },
+    { type: "general", name: "B&B 1", code: "0225E" },
+    { type: "general", name: "B&B 2", code: "0325E" },
+    { type: "general", name: "B&B 3", code: "0824E" }
+  ],
+
+  // APPARTAMENTI - Tutti gli appartamenti in un unico array con tutte le info
+  apartments: [
+    // Irene section
+    {
+      name: "Le Mura",
+      searchTerms: ["le mura", "lemura", "mura"],
+      address: "Via Cardinale Maffi 36, Pisa",
+      guests: 4,
+      hours: 1,
+      minutes: 60,
+      keybox: "9953",
+      keyboxDetails: "KeyBox 9953, KeyBox Posta: 000",
+      composition: ["2 Letti Matrimoniali", "1 Bagno", "1 Cucina"],
+      notes: ["KeyBox 9953", "KeyBox Posta: 000", "Nome: guest", "Password: Maffi36"],
+      map: "https://www.google.com/maps?q=Via+Cardinale+Maffi+36,+Pisa",
+      section: "irene"
+    },
+    {
+      name: "Torre",
+      searchTerms: ["torre"],
+      address: "Via Risorgimento 10, Pisa",
+      guests: 5,
+      hours: 1.5,
+      minutes: 90,
+      keybox: "000",
+      keyboxDetails: "KeyBox cassetta postale: 000",
+      composition: ["2 Letti Matrimoniali", "1 Letto Singolo", "2 Bagni", "1 Cucina"],
+      notes: ["KeyBox cassetta postale: 000"],
+      map: "https://www.google.com/maps/place/Via+Risorgimento,+10,+56126+Pisa+PI/@43.7180123,10.3916741,17z/data=!3m1!4b1!4m6!3m5!1s0x12d5910aa5c87a69:0x5e9870a1bd95ec48!8m2!3d43.7180123!4d10.394249!16s%2Fg%2F11c5q84cys?entry=ttu",
+      section: "irene"
+    },
+    {
+      name: "La Casa di Rosa",
+      searchTerms: ["casa di rosa", "casadirosa", "rosa"],
+      address: "Via Mazzini 35, Migliarino, Pisa",
+      guests: 4,
+      hours: 1.5,
+      minutes: 90,
+      keybox: "19511 / 1951",
+      keyboxDetails: "KeyBox cancello 19511, KeyBox porta 1951",
+      composition: ["1 Letto Matrimoniale", "2 Letti Singoli", "1 Bagno", "1 Cucina", "Spazio esterno"],
+      notes: ["KeyBox cancello 19511", "KeyBox porta 1951"],
+      map: "https://www.google.com/maps/place/Via+Mazzini,+35,+56019+Migliarino+PI/@43.7662855,10.3390043,17z/data=!3m1!4b1!4m9!1m2!2m1!1sVia+Mazzini+35,+Migliarino,+Pisa!3m5!1s0x12d5974e83300571:0xfebac7ef21a55649!8m2!3d43.7662856!4d10.3438752!15sCiBWaWEgTWF6emluaSAzNSwgTWlnbGlhcmlubywgUGlzYZIBEGdlb2NvZGVkX2FkZHJlc3PgAQA?entry=ttu",
+      section: "irene"
+    },
+    {
+      name: "Casa Lia",
+      searchTerms: ["casa lia", "casalia", "lia"],
+      address: "Via Santa Caterina n.6, Pisa",
+      guests: 4,
+      hours: 1.5,
+      minutes: 90,
+      keybox: "1110",
+      keyboxDetails: "KeyBox sul cancello di ferro:1110",
+      composition: ["1 Letto Matrimoniale", "1 Divano letto matrimoniale", "1 Bagno", "1 Cucina"],
+      notes: ["Codice apertura portone: 111067#", "KeyBox sul cancello di ferro:1110", "Ultimo Piano"],
+      map: "https://maps.app.goo.gl/KHWLnAwiLNiRubgWA",
+      section: "irene"
+    },
+
+    // Cerrano section
+    {
+      name: "Tuscany House",
+      searchTerms: ["tuscany", "tuscany house"],
+      address: "Via del Tondo 3, Pisa, Pisa",
+      guests: 5,
+      hours: 2,
+      minutes: 120,
+      keybox: "5-5-6-6",
+      keyboxDetails: "KeyBox: 5-5-6-6",
+      composition: ["1 Letto Matrimoniale", "1 Letto Singolo", "1 Divano Letto Matrimoniale", "2 Bagni (uno senza doccia)", "1 Cucina"],
+      notes: ["METTERE BIDET", "KeyBox: 5-5-6-6", "Se trovate soldi o contratti, lasciare tutti nello stanzone dove ci sono i cambi biancheria"],
+      map: "https://www.google.com/maps/dir//Via+del+Tondo,+3,+56124+Pisa+PI/@43.701052,10.4301216,17z/data=!4m9!4m8!1m0!1m5!1m1!1s0x12d591fb907f2cb9:0xab9ae8f91d8a4c55!2m2!1d10.4326965!2d43.701052!3e0?entry=ttu",
+      section: "cerrano"
+    },
+    {
+      name: "New House",
+      searchTerms: ["new house", "newhouse", "pardi"],
+      address: "Via Francesco Pardi 16, Pisa, Pisa",
+      guests: 4,
+      hours: 1.5,
+      minutes: 90,
+      keybox: "1-9-7-3",
+      keyboxDetails: "Keybox: 1-9-7-3",
+      composition: ["2 Letti Matrimoniali", "1 Bagno", "1 Cucina"],
+      notes: ["METTERE BIDET, L'APPARTAMENTO È AL SECONDO PIANO", "Keybox: 1-9-7-3"],
+      map: "https://goo.gl/maps/ZPmfF4LNYk3zRMUR7",
+      section: "cerrano"
+    },
+    {
+      name: "Designer Flat",
+      searchTerms: ["designer flat", "designerflat", "bargagna"],
+      address: "Via Italo bargagna 38, Pisa, Pisa",
+      guests: 4,
+      hours: 1.5,
+      minutes: 90,
+      keybox: "8-8-8-7",
+      keyboxDetails: "Keybox: 8-8-8-7",
+      composition: ["1 Letto Matrimoniale", "1 Divano Letto Matrimoniale", "1 Bagno", "1 Cucina"],
+      notes: ["METTERE BIDET, L'APPARTAMENTO È AL SECONDO PIANO INTERNO 10", "Keybox: 8-8-8-7", "METTERE ACQUA"],
+      map: "https://maps.app.goo.gl/oRMVWxB117Un5WsK6",
+      section: "cerrano"
+    },
+    {
+      name: "Homiday Elegant",
+      searchTerms: ["homiday elegant", "elegant", "vesalio"],
+      address: "Via Andrea Vesalio, 8",
+      guests: 7,
+      hours: 2,
+      minutes: 120,
+      keybox: "2-1-2-1",
+      keyboxDetails: "Keybox: 2-1-2-1",
+      composition: ["3 Letti Matrimoniali", "2 Bagni", "1 Cucina"],
+      notes: ["Terzo piano interno 8 Campanello 'Lista'", "Mettere Bidet", "Keybox: 2-1-2-1", "METTERE ACQUA"],
+      map: "https://maps.app.goo.gl/MbZimuDkcq1vobBJ6",
+      section: "cerrano"
+    },
+    {
+      name: "Apt Ospedale",
+      searchTerms: ["apt ospedale", "ospedale", "luigi pera"],
+      address: "Via Luigi Pera, 14",
+      guests: 4,
+      hours: 1,
+      minutes: 60,
+      keybox: "8-0-8-0",
+      keyboxDetails: "Keybox: 8 - 0 - 8 - 0",
+      composition: ["1 Letto Matrimoniale", "1 Divano Letto Matrimoniale", "1 Bagno", "1 Cucina"],
+      notes: ["Mettere Bidet", "Keybox: 8 - 0 - 8 - 0"],
+      map: "https://www.google.it/maps/place/Via+Luigi+Pera,+14,+56124+Pisa+PI/@43.7079896,10.4362853,17z/data=!3m1!4b1!4m6!3m5!1s0x12d591e21adbf6d5:0x3ce5c8155fb7b30f!8m2!3d43.7079858!4d10.4388602!16s%2Fg%2F11c281k30j?entry=ttu",
+      section: "cerrano"
+    },
+    {
+      name: "New Apt",
+      searchTerms: ["new apt", "newapt", "taddei"],
+      address: "Via taddei, 15",
+      guests: 4,
+      hours: 1,
+      minutes: 60,
+      keybox: "2-0-0-4",
+      keyboxDetails: "Keybox: 2-0-0-4",
+      composition: ["1 Letto Matrimoniale", "1 Divano Letto Matrimoniale", "1 Bagno", "1 Cucina"],
+      notes: ["Mettere Bidet", "Piano Secondo Interno 9", "Keybox: 2-0-0-4", "METTERE ACQUA"],
+      map: "https://maps.app.goo.gl/DQ69W7NAT3r5Dq439",
+      section: "cerrano"
+    },
+    {
+      name: "Savana",
+      searchTerms: ["savana", "pontasserchio"],
+      address: "Via F.Cilea, 18, Pontasserchio",
+      guests: 4,
+      hours: 1,
+      minutes: 60,
+      keybox: "1-1-2-2",
+      keyboxDetails: "Keybox: 1-1-2-2",
+      composition: ["1 Letto Matrimoniale", "1 Divano Letto Matrimoniale", "1 Bagno", "1 Cucina"],
+      notes: ["Mettere Bidet", "Interno 1", "Keybox: 1-1-2-2"],
+      map: "https://maps.app.goo.gl/F2ZG1inS1oJ4gmyN9",
+      section: "cerrano"
+    },
+    {
+      name: "Rinoceronte",
+      searchTerms: ["rinoceronte", "pontasserchio"],
+      address: "Via F.Cilea, 18, Pontasserchio",
+      guests: 4,
+      hours: 1,
+      minutes: 60,
+      keybox: "2-2-3-3",
+      keyboxDetails: "Keybox: 2-2-3-3",
+      composition: ["1 Letto Matrimoniale", "1 Divano Letto Matrimoniale", "1 Bagno", "1 Cucina"],
+      notes: ["Mettere Bidet", "Interno 2", "Keybox: 2-2-3-3"],
+      map: "https://maps.app.goo.gl/F2ZG1inS1oJ4gmyN9",
+      section: "cerrano"
+    },
+    {
+      name: "Giraffa",
+      searchTerms: ["giraffa", "pontasserchio"],
+      address: "Via F.Cilea, 18, Pontasserchio",
+      guests: 4,
+      hours: 1,
+      minutes: 60,
+      keybox: "3-3-4-4",
+      keyboxDetails: "Keybox: 3-3-4-4",
+      composition: ["1 Letto Matrimoniale", "1 Divano Letto Matrimoniale", "1 Bagno", "1 Cucina"],
+      notes: ["Mettere Bidet", "Interno 3", "Keybox: 3-3-4-4"],
+      map: "https://maps.app.goo.gl/F2ZG1inS1oJ4gmyN9",
+      section: "cerrano"
+    },
+    {
+      name: "Charme And Relax",
+      searchTerms: ["charme and relax", "charm", "relax", "poschi"],
+      address: "vicolo del Poschi 15, Pisa",
+      guests: 4,
+      hours: 1,
+      minutes: 60,
+      keybox: "2020",
+      keyboxDetails: "Keybox:2020",
+      composition: ["1 Letto Matrimoniale", "1 Divano Letto Matrimoniale", "1 Bagno", "1 Cucina"],
+      notes: ["Mettere Bidet", "Keybox:2020", "Codice Portone:1 5 1 5 #", "METTERE ACQUA"],
+      map: "https://maps.app.goo.gl/xU2jgT9ZtodDCaSM6",
+      section: "cerrano"
+    },
+    {
+      name: "Nuovo&Grazioso",
+      searchTerms: ["nuovo grazioso", "nuovograzioso", "paolo vi", "cisanello"],
+      address: "Via Paolo VI 12,Cisanello",
+      guests: 4,
+      hours: 1,
+      minutes: 60,
+      keybox: "595",
+      keyboxDetails: "Keybox:Cassetta postale con KeyBox 595",
+      composition: ["1 Letto Matrimoniale", "1 Divano Letto Matrimoniale", "1 Bagno", "1 Cucina"],
+      notes: ["Mettere Bidet", "Keybox:Cassetta postale con KeyBox 595", "METTERE ACQUA"],
+      map: "https://maps.app.goo.gl/HfxGhaus8yGyTuDFA",
+      section: "cerrano"
+    },
+    {
+      name: "Via Campania 2",
+      searchTerms: ["campania", "campania2", "cisanello"],
+      address: "Via Campaniaa 2, Cisanello",
+      guests: 4,
+      hours: 1,
+      minutes: 60,
+      keybox: "9-8-7-6",
+      keyboxDetails: "Keybox:9-8-7-6 (Cassettapostale con etichetta rossa)",
+      composition: ["1 Letto Matrimoniale", "1 Divano Letto Matrimoniale", "1 Bagno", "1 Cucina"],
+      notes: ["Mettere Bidet", "Piano Primo", "Keybox:9-8-7-6 (Cassettapostale con etichetta rossa)"],
+      map: "https://maps.app.goo.gl/W1GkNcb46WKJkdys8",
+      section: "cerrano"
+    },
+    {
+      name: "Cozy House",
+      searchTerms: ["cozy house", "cozyhouse", "taddei", "cisanello"],
+      address: "Via Taddei 1, Cisanello",
+      guests: 3,
+      hours: 1,
+      minutes: 60,
+      keybox: "7-8-7-8",
+      keyboxDetails: "Keybox: Cassetta postale :'Salinari' 7-8-7-8",
+      composition: ["1 Letto Matrimoniale", "1 Divano Letto Singolo", "1 Bagno", "1 Cucina"],
+      notes: ["Mettere Bidet", "Keybox: Cassetta postale :'Salinari' 7-8-7-8", "2 piano , INT. 8"],
+      map: "https://maps.app.goo.gl/iYX7rNfKd9PRQ7xG6",
+      section: "cerrano"
+    },
+    {
+      name: "Sweet Home",
+      searchTerms: ["sweet home", "sweethome", "poschi"],
+      address: "vicolo del poschi 15, Pisa",
+      guests: 4,
+      hours: 1,
+      minutes: 60,
+      keybox: "2-5-0-5",
+      keyboxDetails: "Keybox:2 - 5 - 0 - 5",
+      composition: ["1 Letto Matrimoniale", "1 Divano Letto Matrimoniale", "1 Bagno", "1 Cucina"],
+      notes: ["Mettere Bidet", "Keybox:2 - 5 - 0 - 5", "piano 1, INT.4", "METTERE ACQUA"],
+      map: "https://maps.app.goo.gl/xU2jgT9ZtodDCaSM6",
+      section: "cerrano"
+    },
+    {
+      name: "Flat Moderno",
+      searchTerms: ["flat moderno", "flatmoderno", "bargagna"],
+      address: "Via Italo bargagna 38, Pisa, Pisa",
+      guests: 4,
+      hours: 1,
+      minutes: 60,
+      keybox: "1711",
+      keyboxDetails: "Keybox: 1711",
+      composition: ["1 Letto Matrimoniale", "1 Divano Letto Matrimoniale", "1 Bagno", "1 Cucina"],
+      notes: ["METTERE BIDET", "L'APPARTAMENTO È AL QUARTO PIANO INTERNO 23", "Keybox: 1711", "METTERE ACQUA"],
+      map: "https://maps.app.goo.gl/oRMVWxB117Un5WsK6",
+      section: "cerrano"
+    },
+
+    // Lorenza section
+    {
+      name: "Ranieri",
+      searchTerms: ["ranieri"],
+      address: "Piazza Vittorio Locchi 5, Pisa",
+      guests: 2,
+      hours: 1,
+      minutes: 60,
+      keybox: "N/A",
+      keyboxDetails: "Nessun keybox specificato",
+      composition: ["1 Letto Matrimoniale", "1 Bagni", "1 Cucina"],
+      notes: ["se trovate soldi o chiavi, metteteli nei cassetti", "Piano Terra"],
+      map: "https://maps.app.goo.gl/FAHcRrY2do67F2Ud9",
+      section: "lorenza"
+    },
+    {
+      name: "Laura",
+      searchTerms: ["laura"],
+      address: "via Risorgimento 10",
+      guests: 2,
+      hours: 1,
+      minutes: 60,
+      keybox: "N/A",
+      keyboxDetails: "Nessun keybox specificato",
+      composition: ["1 Letto Matrimoniale", "1 Bagni", "1 Cucina"],
+      notes: ["se trovate soldi o chiavi, metteteli nei cassetti"],
+      map: "https://maps.app.goo.gl/CacThjjgy8VPJCjc7",
+      section: "lorenza"
+    },
+    {
+      name: "Kinzica",
+      searchTerms: ["kinzica", "kinzika"],
+      address: "Via Bovio 9, Pisa",
+      guests: 2,
+      hours: 1,
+      minutes: 60,
+      keybox: "1995",
+      keyboxDetails: "KeyBox: 1995",
+      composition: ["1 Letto Matrimoniale", "1 Bagni", "1 Cucina"],
+      notes: ["se trovate soldi o chiavi, metteteli nei cassetti", "KeyBox: 1995"],
+      map: "https://maps.app.goo.gl/zTRNQmcaFB361diX6",
+      section: "lorenza"
+    },
+    {
+      name: "Pampurio",
+      searchTerms: ["pampurio"],
+      address: "Piazza del Pozzetto 7,Pisa",
+      guests: 3,
+      hours: 1,
+      minutes: 60,
+      keybox: "N/A",
+      keyboxDetails: "Nessun keybox specificato",
+      composition: ["1 Letto Matrimoniale", "1 Letto Singolo", "1 Bagni", "1 Cucina"],
+      notes: ["se trovate soldi o chiavi, metteteli nei cassetti"],
+      map: "https://maps.app.goo.gl/C9AvkD98hGdh7Kxc7",
+      section: "lorenza"
+    },
+    {
+      name: "Pinuccio",
+      searchTerms: ["pinuccio"],
+      address: "via dell'omodarme 43,Pisa",
+      guests: 4,
+      hours: 1,
+      minutes: 60,
+      keybox: "1995",
+      keyboxDetails: "KeyBox: 1995",
+      composition: ["1 Letto Matrimoniale", "1 Divano Letto", "1 Bagni", "1 Cucina"],
+      notes: ["se trovate soldi o chiavi, metteteli nei cassetti", "KeyBox: 1995"],
+      map: "https://maps.app.goo.gl/Y7qaRWkZNbFEghNm9",
+      section: "lorenza"
+    },
+    {
+      name: "Ella",
+      searchTerms: ["ella"],
+      address: "Via Omodeo 3,Pisa",
+      guests: 4,
+      hours: 1,
+      minutes: 60,
+      keybox: "1971",
+      keyboxDetails: "KeyBox: 1971",
+      composition: ["1 Letto Matrimoniale", "1 Divano Letto", "1 Bagni", "1 Cucina"],
+      notes: ["se trovate soldi o chiavi, metteteli nei cassetti", "KeyBox: 1971"],
+      map: "https://maps.app.goo.gl/1gLpnamEp5PU5eER8",
+      section: "lorenza"
+    },
+
+    // Molino section
+    {
+      name: "Paola",
+      searchTerms: ["paola"],
+      address: "località dogana del tiglio, 56032 Buti PI",
+      guests: 2,
+      hours: 1.5,
+      minutes: 90,
+      keybox: "2410e",
+      keyboxDetails: "Codice cancello 2410e",
+      composition: ["1 Letto Matrimoniale", "1 Bagni", "1 Cucina"],
+      notes: ["La biancheria la trovata alla struttura", "Codice cancello 2410e"],
+      map: "https://maps.app.goo.gl/bawvCXP6JoSvp9fGA",
+      section: "molino"
+    },
+    {
+      name: "Sabina",
+      searchTerms: ["sabina"],
+      address: "località dogana del tiglio, 56032 Buti PI",
+      guests: 2,
+      hours: 1.5,
+      minutes: 90,
+      keybox: "2410e",
+      keyboxDetails: "Codice cancello 2410e",
+      composition: ["1 Letto Matrimoniale", "1 Bagni", "1 Cucina"],
+      notes: ["La biancheria la trovata alla struttura", "Codice cancello 2410e"],
+      map: "https://maps.app.goo.gl/bawvCXP6JoSvp9fGA",
+      section: "molino"
+    },
+
+    // Appartamenti generici (solo minuti)
+    { name: "ORTENSIE", searchTerms: ["ortensie"], minutes: 150, section: "generic" },
+    { name: "INBETWEEN", searchTerms: ["inbetween"], minutes: 60, section: "generic" },
+    { name: "SUNNY", searchTerms: ["sunny"], minutes: 90, section: "generic" },
+    { name: "ORSINI", searchTerms: ["orsini"], minutes: 60, section: "generic" },
+    { name: "RIPASSO", searchTerms: ["ripasso"], minutes: 30, section: "generic" },
+    { name: "GIRASOLE", searchTerms: ["girasole"], minutes: 30, section: "generic" },
+    { name: "GELSOMINO", searchTerms: ["gelsomino"], minutes: 30, section: "generic" },
+    { name: "MIMOSA", searchTerms: ["mimosa"], minutes: 30, section: "generic" },
+    { name: "3in1", searchTerms: ["3in1", "tre in uno"], minutes: 100, section: "generic" }
+  ],
+
+  // DIPENDENTI - Struttura piatta
+  employees: [
+    { name: "Alessandro Resti", searchTerms: ["alessandro", "resti", "alessandro resti"], password: "AR5671", urlParam: "AlessandroResti" },
+    { name: "Anna Wleklak", searchTerms: ["anna", "wleklak", "anna wleklak"], password: "AW5896", urlParam: "AnnaWleklak" },
+    { name: "Antonella Guarnieri", searchTerms: ["antonella", "guarnieri", "antonella guarnieri"], password: "AG8024", urlParam: "AntonellaGuarnieri" },
+    { name: "Letizia Vannini", searchTerms: ["letizia", "vannini", "letizia vannini"], password: "LV4587", urlParam: "LetiziaVannini" },
+    { name: "Manola Santarnecchi", searchTerms: ["manola", "santarnecchi", "manola santarnecchi"], password: "MS1936", urlParam: "ManolaSanternecchi" },
+    { name: "Roberta Salemmo", searchTerms: ["roberta", "salemmo", "roberta salemmo"], password: "RS6239", urlParam: "RobertaSalemmo" },
+    { name: "Silvia Marrucci", searchTerms: ["silvia", "marrucci", "silvia marrucci"], password: "SM5872", urlParam: "SilviaMarrucci" },
+    { name: "Anna Macrì", searchTerms: ["anna", "macrì", "anna macrì"], password: "AM9814", urlParam: "AnnaMacrì" },
+    { name: "Fabio Malvaldi", searchTerms: ["fabio", "malvaldi", "fabio malvaldi"], password: "FM1122", urlParam: "FabioMalvaldi" },
+    { name: "Francesco Martini", searchTerms: ["francesco", "martini", "francesco martini"], password: "FM1111", urlParam: "FrancescoMartini" },
+    { name: "Angelo Barachini", searchTerms: ["angelo", "barachini", "angelo barachini"], password: "AB2221", urlParam: "AngeloBarachini" }
+  ],
+
+  // UFFICI - Struttura piatta
+  offices: [
+    { name: "ACI", searchTerms: ["aci"], minutes: 200 },
+    { name: "PROFESSIONECASA", searchTerms: ["professionecasa"], minutes: 60 },
+    { name: "UFFICIO START", searchTerms: ["ufficio start", "start"], minutes: 120 },
+    { name: "MAGAZZINO START", searchTerms: ["magazzino start", "magazzino"], minutes: 30 },
+    { name: "SUORE NAVACCHIO", searchTerms: ["suore navacchio", "navacchio"], minutes: 50 },
+    { name: "SUORE PISA", searchTerms: ["suore pisa"], minutes: 50 },
+    { name: "COLLEGIO PROFESSIONALE INFERMIERI", searchTerms: ["collegio infermieri", "infermieri"], minutes: 60 },
+    { name: "COLLEGIO PROFESSIONALE INFERMIERI - VETRI", searchTerms: ["collegio infermieri vetri", "vetri"], minutes: 40 },
+    { name: "CESVOT", searchTerms: ["cesvot"], minutes: 30 },
+    { name: "MATCH NEW GENERATION", searchTerms: ["match new generation", "match"], minutes: 40 },
+    { name: "Q DESIGNE", searchTerms: ["q designe", "designe"], minutes: 90 },
+    { name: "STUDI MEDICI DEL LAVORO", searchTerms: ["studi medici lavoro", "medici lavoro"], minutes: 120 },
+    { name: "ACLI NAVACCHIO", searchTerms: ["acli navacchio"], minutes: 40 },
+    { name: "ACLI CASCINA", searchTerms: ["acli cascina"], minutes: 60 },
+    { name: "ACLI GHEZZANO", searchTerms: ["acli ghezzano"], minutes: 60 },
+    { name: "ACLI CISANELLO", searchTerms: ["acli cisanello"], minutes: 60 },
+    { name: "ACLI PISA", searchTerms: ["acli pisa"], minutes: 100 },
+    { name: "PALESTRA", searchTerms: ["palestra"], minutes: 300 },
+    { name: "PALESTRA SETTIMANALE", searchTerms: ["palestra settimanale"], minutes: 90 }
+  ],
+
+  // BNB - Struttura piatta
+  bnb: [
+    { name: "Check-Out", searchTerms: ["check-out", "checkout"], minutes: 30 },
+    { name: "Check-Out_CameraGrande", searchTerms: ["check-out camera grande", "camera grande"], minutes: 60 },
+    { name: "Refresh", searchTerms: ["refresh"], minutes: 10 },
+    { name: "Refresh Approfondito", searchTerms: ["refresh approfondito"], minutes: 15 },
+    { name: "Area Comune", searchTerms: ["area comune"], minutes: 10 }
+  ],
+
+  // BNB NOMI
+  bnbNames: [
+    { name: "Dalmazia", searchTerms: ["dalmazia"] },
+    { name: "Martiri", searchTerms: ["martiri"] },
+    { name: "C_Grande", searchTerms: ["c grande", "camera grande"] },
+    { name: "C_Piccola", searchTerms: ["c piccola", "camera piccola"] }
+  ],
+
+  // MASTER PASSWORD
+  masterPassword: "Artigea"
 };

@@ -75,7 +75,13 @@ ISTRUZIONI SPECIALI PER RICERCHE SPECIFICHE:
 - Se viene chiesto i minuti/ore di un appartamento, cerca SOLO in quell'appartamento
 - Non fornire informazioni generiche se viene fatta una domanda specifica
 DATI AZIENDALI DISPONIBILI:
-${JSON.stringify(relevantData, null, 2)}`;
+${JSON.stringify(relevantData, null, 2)}
+
+ISTRUZIONI AGGIUNTIVE PER RISPOSTE SPECIFICHE:
+- Se viene richiesto il keybox di un appartamento specifico, usa SOLO il campo "keyboxDetails" o "keybox" di quell'appartamento
+- Se viene richiesto l'indirizzo, usa SOLO il campo "address" dell'appartamento specifico
+- Se vengono richiesti i minuti/ore, usa SOLO i campi "minutes" e "hours" dell'appartamento specifico
+- Non aggiungere informazioni generiche se la domanda è specifica`;
 
         try {
             const response = await fetch(this.apiUrl, {
