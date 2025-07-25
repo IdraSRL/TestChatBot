@@ -1,11 +1,11 @@
 import { ChatBot } from './chatbot.js';
 import { DataProcessor } from './dataProcessor.js';
 import { UI } from './ui.js';
-import data from '../data_export.json';
+import { companyData } from './data.js';
 
 class App {
     constructor() {
-        this.dataProcessor = new DataProcessor(data);
+        this.dataProcessor = new DataProcessor(companyData);
         this.chatBot = new ChatBot();
         this.ui = new UI();
         
@@ -13,22 +13,22 @@ class App {
     }
 
     init() {
+        this.checkApiKey();
         this.setupEventListeners();
-        this.ui.showMessage('Inserisci la tua API Key OpenAI per iniziare.', 'bot');
+    }
+    
+    checkApiKey() {
+        // Controlla se l'API key è configurata
+        if (this.chatBot.apiKey === 'sk-your-api-key-here') {
+            this.ui.showMessage('⚠️ ATTENZIONE: Devi configurare la tua API Key OpenAI nel file src/config.js', 'bot');
+            this.ui.enableChat(false);
+        } else {
+            this.ui.showMessage('✅ Chatbot pronto! Puoi iniziare a fare domande sui dati aziendali.', 'bot');
+            this.ui.enableChat(true);
+        }
     }
 
     setupEventListeners() {
-        // API Key management
-        document.getElementById('saveApiKey').addEventListener('click', () => {
-            this.handleApiKeySave();
-        });
-
-        document.getElementById('apiKey').addEventListener('keypress', (e) => {
-            if (e.key === 'Enter') {
-                this.handleApiKeySave();
-            }
-        });
-
         // Chat functionality
         document.getElementById('sendButton').addEventListener('click', () => {
             this.handleSendMessage();
@@ -39,43 +39,6 @@ class App {
                 this.handleSendMessage();
             }
         });
-    }
-
-    async handleApiKeySave() {
-        const apiKey = document.getElementById('apiKey').value.trim();
-        
-        if (!apiKey) {
-            this.ui.showApiStatus('Inserisci una API Key valida', 'error');
-            return;
-        }
-
-        if (!apiKey.startsWith('sk-')) {
-            this.ui.showApiStatus('La API Key deve iniziare con "sk-"', 'error');
-            return;
-        }
-
-        try {
-            this.ui.showLoading(true);
-            
-            // Test the API key
-            const isValid = await this.chatBot.testApiKey(apiKey);
-            
-            if (isValid) {
-                this.chatBot.setApiKey(apiKey);
-                this.ui.showApiStatus('✅ API Key configurata correttamente!', 'success');
-                this.ui.enableChat(true);
-                
-                // Clear the API key input for security
-                document.getElementById('apiKey').value = '';
-            } else {
-                this.ui.showApiStatus('❌ API Key non valida', 'error');
-            }
-        } catch (error) {
-            console.error('Error testing API key:', error);
-            this.ui.showApiStatus('❌ Errore nella verifica della API Key', 'error');
-        } finally {
-            this.ui.showLoading(false);
-        }
     }
 
     async handleSendMessage() {

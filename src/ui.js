@@ -24,20 +24,6 @@ export class UI {
         this.chatMessages.scrollTop = this.chatMessages.scrollHeight;
     }
 
-    showApiStatus(message, type) {
-        const statusDiv = document.getElementById('apiStatus');
-        statusDiv.textContent = message;
-        statusDiv.className = `api-status ${type}`;
-        
-        // Auto-hide success messages after 3 seconds
-        if (type === 'success') {
-            setTimeout(() => {
-                statusDiv.textContent = '';
-                statusDiv.className = 'api-status';
-            }, 3000);
-        }
-    }
-
     enableChat(enabled) {
         const userInput = document.getElementById('userInput');
         const sendButton = document.getElementById('sendButton');
@@ -49,7 +35,7 @@ export class UI {
             userInput.placeholder = 'Scrivi la tua domanda...';
             userInput.focus();
         } else {
-            userInput.placeholder = 'Configura prima la API Key...';
+            userInput.placeholder = 'Configura prima la API Key nel file config.js...';
         }
     }
 

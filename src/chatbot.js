@@ -1,20 +1,22 @@
+import { CONFIG } from './config.js';
+
 export class ChatBot {
     constructor() {
-        this.apiKey = null;
-        this.apiUrl = 'https://api.openai.com/v1/chat/completions';
+        this.apiKey = CONFIG.OPENAI_API_KEY;
+        this.apiUrl = CONFIG.OPENAI_API_URL;
     }
 
     setApiKey(apiKey) {
         this.apiKey = apiKey;
     }
 
-    async testApiKey(apiKey) {
+    async testApiKey() {
         try {
             const response = await fetch(this.apiUrl, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${apiKey}`
+                    'Authorization': `Bearer ${this.apiKey}`
                 },
                 body: JSON.stringify({
                     model: 'gpt-3.5-turbo',
@@ -39,6 +41,10 @@ export class ChatBot {
     async getResponse(userMessage, relevantData) {
         if (!this.apiKey) {
             throw new Error('API Key non configurata');
+        }
+        
+        if (this.apiKey === 'sk-your-api-key-here') {
+            throw new Error('Devi configurare una vera API Key nel file config.js');
         }
 
         const systemPrompt = `Sei un assistente specializzato per l'azienda Artigea. 
