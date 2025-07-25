@@ -145,25 +145,28 @@ export class DataProcessor {
 
     determineSearchType(query) {
         // Determina il tipo di informazione richiesta
-        if (query.includes('keybox') || query.includes('codice')) {
+        const queryLower = query.toLowerCase();
+        
+        // Controlla se è una richiesta molto specifica
+        if ((queryLower.includes('keybox') || queryLower.includes('codice')) && !queryLower.includes('allarme')) {
             return 'keybox';
         }
-        if (query.includes('indirizzo') || query.includes('address')) {
+        if (queryLower.includes('indirizzo') || queryLower.includes('address')) {
             return 'address';
         }
-        if (query.includes('minuti') || query.includes('ore') || query.includes('tempo')) {
+        if (queryLower.includes('minuti') || queryLower.includes('ore') || queryLower.includes('tempo')) {
             return 'time';
         }
-        if (query.includes('allarme') || query.includes('alarm')) {
+        if (queryLower.includes('allarme') || queryLower.includes('alarm')) {
             return 'alarm';
         }
-        if (query.includes('dipendente') || query.includes('employee')) {
+        if (queryLower.includes('dipendente') || queryLower.includes('employee')) {
             return 'employee';
         }
-        if (query.includes('ufficio') || query.includes('office')) {
+        if (queryLower.includes('ufficio') || queryLower.includes('office')) {
             return 'office';
         }
-        if (query.includes('appartamento') || query.includes('apartment')) {
+        if (queryLower.includes('appartamento') || queryLower.includes('apartment')) {
             return 'apartment';
         }
         
@@ -185,32 +188,45 @@ export class DataProcessor {
             filteredMatches = matches.filter(m => m.dataType === 'offices');
         }
         
+        // Per richieste specifiche, mantieni solo il primo risultato più rilevante
+        if (['keybox', 'address', 'time'].includes(searchType) && filteredMatches.length > 1) {
+            // Ordina per rilevanza (appartamenti prima di allarmi per keybox)
+            if (searchType === 'keybox') {
+                filteredMatches = filteredMatches.filter(m => m.dataType === 'apartments');
+            }
+            filteredMatches = filteredMatches.slice(0, 1);
+        }
+        
         // Aggiungi informazioni specifiche richieste
         if (searchType === 'keybox') {
             filteredMatches = filteredMatches.map(match => ({
                 ...match,
                 specificInfo: 'keybox',
-                requestedData: match.keyboxDetails || match.keybox || match.code
+                requestedData: match.keyboxDetails || match.keybox || match.code,
+                isVerySpecific: true
             }));
         } else if (searchType === 'address') {
             filteredMatches = filteredMatches.map(match => ({
                 ...match,
                 specificInfo: 'address',
-                requestedData: match.address
+                requestedData: match.address,
+                isVerySpecific: true
             }));
         } else if (searchType === 'time') {
             filteredMatches = filteredMatches.map(match => ({
                 ...match,
                 specificInfo: 'time',
-                requestedData: match.minutes ? `${match.minutes} minuti${match.hours ? ` (${match.hours} ore)` : ''}` : null
+                requestedData: match.minutes ? `${match.minutes} minuti${match.hours ? ` (${match.hours} ore)` : ''}` : null,
+                isVerySpecific: true
             }));
         }
         
         return {
             query: query,
-            matches: filteredMatches.slice(0, 10), // Limita a 10 risultati
+            matches: filteredMatches.slice(0, searchType === 'keybox' || searchType === 'address' || searchType === 'time' ? 1 : 10),
             searchType: searchType,
-            isSpecific: true
+            isSpecific: true,
+            isVerySpecific: ['keybox', 'address', 'time'].includes(searchType)
         };
     }
 
