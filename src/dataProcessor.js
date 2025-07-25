@@ -1,136 +1,153 @@
-import { CONFIG } from './config.js';
-
-export class ChatBot {
-    constructor() {
-        this.apiKey = CONFIG.OPENAI_API_KEY;
-        this.apiUrl = CONFIG.OPENAI_API_URL;
+export class DataProcessor {
+    constructor(companyData) {
+        this.data = companyData;
     }
 
-    setApiKey(apiKey) {
-        this.apiKey = apiKey;
+    findRelevantData(query) {
+        const queryLower = query.toLowerCase();
+        const relevantData = {
+            alarms: [],
+            apartments: [],
+            employees: [],
+            offices: [],
+            bnb: [],
+            bnbNames: []
+        };
+
+        // Determina se è una richiesta molto specifica (keybox, indirizzo, minuti)
+        const isKeyboxQuery = queryLower.includes('keybox') || queryLower.includes('key box');
+        const isAddressQuery = queryLower.includes('indirizzo') || queryLower.includes('address');
+        const isTimeQuery = queryLower.includes('minuti') || queryLower.includes('ore') || queryLower.includes('tempo');
+        const isVerySpecific = isKeyboxQuery || isAddressQuery || isTimeQuery;
+
+        // Cerca negli allarmi
+        this.data.alarms.forEach(alarm => {
+            if (this.matchesQuery(alarm, queryLower)) {
+                relevantData.alarms.push(alarm);
+            }
+        });
+
+        // Cerca negli appartamenti
+        this.data.apartments.forEach(apartment => {
+            if (this.matchesQuery(apartment, queryLower)) {
+                relevantData.apartments.push(apartment);
+            }
+        });
+
+        // Cerca nei dipendenti
+        this.data.employees.forEach(employee => {
+            if (this.matchesQuery(employee, queryLower)) {
+                relevantData.employees.push(employee);
+            }
+        });
+
+        // Cerca negli uffici
+        this.data.offices.forEach(office => {
+            if (this.matchesQuery(office, queryLower)) {
+                relevantData.offices.push(office);
+            }
+        });
+
+        // Cerca nei BNB
+        this.data.bnb.forEach(bnb => {
+            if (this.matchesQuery(bnb, queryLower)) {
+                relevantData.bnb.push(bnb);
+            }
+        });
+
+        // Cerca nei nomi BNB
+        this.data.bnbNames.forEach(bnbName => {
+            if (this.matchesQuery(bnbName, queryLower)) {
+                relevantData.bnbNames.push(bnbName);
+            }
+        });
+
+        // Per richieste molto specifiche, restituisci solo il primo risultato più rilevante
+        if (isVerySpecific && relevantData.apartments.length > 0) {
+            // Trova l'appartamento più rilevante
+            const mostRelevant = this.findMostRelevantApartment(relevantData.apartments, queryLower);
+            if (mostRelevant) {
+                relevantData.apartments = [mostRelevant];
+                // Pulisci gli altri array per focus sulla risposta specifica
+                relevantData.alarms = [];
+                relevantData.employees = [];
+                relevantData.offices = [];
+                relevantData.bnb = [];
+                relevantData.bnbNames = [];
+            }
+        }
+
+        // Aggiungi flag per indicare se è una richiesta specifica
+        relevantData.isVerySpecific = isVerySpecific;
+        relevantData.queryType = isKeyboxQuery ? 'keybox' : isAddressQuery ? 'address' : isTimeQuery ? 'time' : 'general';
+
+        return relevantData;
     }
 
-    async testApiKey() {
-        try {
-            const response = await fetch(this.apiUrl, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${this.apiKey}`
-                },
-                body: JSON.stringify({
-                    model: 'gpt-3.5-turbo',
-                    messages: [
-                        {
-                            role: 'user',
-                            content: 'Test'
-                        }
-                    ],
-                    max_tokens: 5,
-                    temperature: 0.1
-                })
-            });
+    matchesQuery(item, queryLower) {
+        // Controlla il nome
+        if (item.name && item.name.toLowerCase().includes(queryLower)) {
+            return true;
+        }
 
-            return response.ok;
-        } catch (error) {
-            console.error('API key test failed:', error);
+        // Controlla i termini di ricerca se esistono
+        if (item.searchTerms) {
+            return item.searchTerms.some(term => 
+                queryLower.includes(term.toLowerCase()) || 
+                term.toLowerCase().includes(queryLower)
+            );
+        }
+
+        // Controlla altri campi rilevanti
+        const fieldsToCheck = ['location', 'address', 'code', 'type'];
+        return fieldsToCheck.some(field => {
+            if (item[field]) {
+                return item[field].toLowerCase().includes(queryLower);
+            }
             return false;
-        }
+        });
     }
 
-    async getResponse(userMessage, relevantData) {
-        if (!this.apiKey) {
-            throw new Error('API Key non configurata');
-        }
-        
-        if (this.apiKey === 'sk-your-api-key-here') {
-            throw new Error('Devi configurare una vera API Key nel file config.js');
-        }
+    findMostRelevantApartment(apartments, queryLower) {
+        // Trova l'appartamento con il match più preciso
+        let bestMatch = null;
+        let bestScore = 0;
 
-        const systemPrompt = `Sei un assistente specializzato per l'azienda Artigea. 
-Il tuo compito è rispondere SOLO alle domande sui dati aziendali forniti.
-
-REGOLE IMPORTANTI:
-1. Rispondi SOLO con informazioni presenti nei dati forniti
-2. Se non trovi informazioni pertinenti, rispondi: "Non ho trovato informazioni su questo argomento nei dati aziendali"
-3. Organizza le risposte in modo chiaro e strutturato
-4. Usa elenchi puntati quando ci sono più informazioni
-5. Separa chiaramente le diverse categorie di informazioni
-6. Usa un tono professionale ma amichevole
-7. Evita ripetizioni e informazioni ridondanti
-8. Presenta prima le informazioni più rilevanti alla domanda
-9. Per domande specifiche su appartamenti, concentrati SOLO sui dati dell'appartamento richiesto
-10. Se viene chiesto il keybox di un appartamento specifico, cerca nelle "note" dell'appartamento
-11. IMPORTANTE: Se viene richiesta una informazione SPECIFICA (keybox, indirizzo, minuti), rispondi SOLO con quella informazione, senza aggiungere altri dettagli non richiesti
-
-FORMATO RISPOSTA:
-- Per codici allarme: specifica chiaramente nome/luogo e codice
-- Per appartamenti: indica nome, indirizzo, caratteristiche principali
-- Per keybox appartamenti: cerca nelle note dell'appartamento specifico
-- Per dipendenti: nome completo e informazioni rilevanti
-- Per uffici: nome e tempo di pulizia
-- Per richieste specifiche di keybox: rispondi SOLO "Keybox [nome appartamento]: [codice]"
-- Per richieste specifiche di indirizzo: rispondi SOLO "Indirizzo [nome appartamento]: [indirizzo]"
-- Per richieste specifiche di minuti/ore: rispondi SOLO "Tempo pulizia [nome]: [minuti] minuti"
-
-ISTRUZIONI SPECIALI PER RICERCHE SPECIFICHE:
-- Se viene chiesto "keybox di [nome appartamento]", cerca SOLO nell'appartamento con quel nome
-- Se viene chiesto l'indirizzo di un appartamento, cerca SOLO in quell'appartamento
-- Se viene chiesto i minuti/ore di un appartamento, cerca SOLO in quell'appartamento
-- Non fornire informazioni generiche se viene fatta una domanda specifica
-- Se la domanda contiene solo "keybox" + nome appartamento, rispondi ESCLUSIVAMENTE con il codice keybox
-- Non aggiungere note, indirizzi o altre informazioni se non esplicitamente richieste
-
-ESEMPI DI RISPOSTE CORRETTE:
-Domanda: "Keybox Mura" → Risposta: "Keybox Le Mura: 9953"
-Domanda: "Keybox Girasole" → Risposta: "Keybox Girasole: 0-0-1-1"
-Domanda: "Indirizzo Torre" → Risposta: "Indirizzo Torre: Via Risorgimento 10, Pisa"
-Domanda: "Minuti Tuscany" → Risposta: "Tempo pulizia Tuscany House: 120 minuti"
-
-DATI AZIENDALI DISPONIBILI:
-${JSON.stringify(relevantData, null, 2)}
-
-ISTRUZIONI AGGIUNTIVE PER RISPOSTE SPECIFICHE:
-- Se viene richiesto il keybox di un appartamento specifico, usa SOLO il campo "keyboxDetails" o "keybox" di quell'appartamento
-- Se viene richiesto l'indirizzo, usa SOLO il campo "address" dell'appartamento specifico
-- Se vengono richiesti i minuti/ore, usa SOLO i campi "minutes" e "hours" dell'appartamento specifico
-- Non aggiungere informazioni generiche se la domanda è specifica`;
-
-        try {
-            const response = await fetch(this.apiUrl, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${this.apiKey}`
-                },
-                body: JSON.stringify({
-                    model: 'gpt-3.5-turbo',
-                    messages: [
-                        {
-                            role: 'system',
-                            content: systemPrompt
-                        },
-                        {
-                            role: 'user',
-                            content: userMessage
-                        }
-                    ],
-                    max_tokens: 300,
-                    temperature: 0.1
-                })
-            });
-
-            if (!response.ok) {
-                const errorData = await response.json();
-                throw new Error(`API Error: ${errorData.error?.message || 'Unknown error'}`);
+        apartments.forEach(apartment => {
+            let score = 0;
+            
+            // Nome esatto ha punteggio massimo
+            if (apartment.name && queryLower.includes(apartment.name.toLowerCase())) {
+                score += 10;
             }
 
-            const data = await response.json();
-            return data.choices[0].message.content.trim();
+            // Termini di ricerca hanno punteggio alto
+            if (apartment.searchTerms) {
+                apartment.searchTerms.forEach(term => {
+                    if (queryLower.includes(term.toLowerCase())) {
+                        score += 5;
+                    }
+                });
+            }
 
-        } catch (error) {
-            console.error('ChatGPT API error:', error);
-            throw error;
-        }
+            if (score > bestScore) {
+                bestScore = score;
+                bestMatch = apartment;
+            }
+        });
+
+        return bestMatch || apartments[0];
+    }
+
+    // Metodo per ottenere statistiche sui dati
+    getDataStats() {
+        return {
+            alarms: this.data.alarms.length,
+            apartments: this.data.apartments.length,
+            employees: this.data.employees.length,
+            offices: this.data.offices.length,
+            bnb: this.data.bnb.length,
+            bnbNames: this.data.bnbNames.length
+        };
     }
 }
