@@ -297,6 +297,49 @@ export const companyData = {
       section: "cerrano"
     },
 
+        {
+      name: "Girasole",
+      searchTerms: ["Girasole", "3in1"],
+      address: "Via Di Mezzana 11, Pisa, Pisa",
+      guests: 3,
+      hours: 0.5,
+      minutes: 30,
+      keybox: "0-0-1-1",
+      keyboxDetails: "Keybox: 0-0-1-1",
+      composition: ["1 Letto Matrimoniale", "1 Divano Letto Singolo", "1 Bagno"],
+      notes: ["METTERE BIDET","Sono 3 camere con bagno privato in un unico appartamento, va fatta la pulizia della camera, del bagno e della cucina","Edificio 11, suonare a CATANIA (il portone si apre), salire al secondo piano, ultima porta sulla destra (ci sono le 3 KeyBox)","Se trovate soldi o contratti, lasciare tutto in garage (è l'unico con la cassetta postale)"],
+      map: "https://goo.gl/maps/TW6R1tfcMebjL81DA",
+      section: "cerrano"
+    },
+            {
+      name: "Gelsomino",
+      searchTerms: ["Gelsomino", "3in1"],
+      address: "Via Di Mezzana 11, Pisa, Pisa",
+      guests: 2,
+      hours: 0.5,
+      minutes: 30,
+      keybox: "3-3-3-4",
+      keyboxDetails: "Keybox: 3-3-3-4",
+      composition: ["1 Letto Matrimoniale che diventa singolo", "1 Bagno"],
+      notes: ["METTERE BIDET","Sono 3 camere con bagno privato in un unico appartamento, va fatta la pulizia della camera, del bagno e della cucina","Edificio 11, suonare a CATANIA (il portone si apre), salire al secondo piano, ultima porta sulla destra (ci sono le 3 KeyBox)","Se trovate soldi o contratti, lasciare tutto in garage (è l'unico con la cassetta postale)"],
+      map: "https://goo.gl/maps/TW6R1tfcMebjL81DA",
+      section: "cerrano"
+    },
+                {
+      name: "Mimosa",
+      searchTerms: ["Mimosa", "3in1"],
+      address: "Via Di Mezzana 11, Pisa, Pisa",
+      guests: 2,
+      hours: 0.5,
+      minutes: 30,
+      keybox: "1-1-1-2",
+      keyboxDetails: "Keybox: 1-1-1-2",
+      composition: ["1 Letto Matrimoniale", "1 Bagno"],
+      notes: ["METTERE BIDET","Sono 3 camere con bagno privato in un unico appartamento, va fatta la pulizia della camera, del bagno e della cucina","Edificio 11, suonare a CATANIA (il portone si apre), salire al secondo piano, ultima porta sulla destra (ci sono le 3 KeyBox)","Se trovate soldi o contratti, lasciare tutto in garage (è l'unico con la cassetta postale)"],
+      map: "https://goo.gl/maps/TW6R1tfcMebjL81DA",
+      section: "cerrano"
+    },
+
     // Lorenza section
     {
       name: "Ranieri",
